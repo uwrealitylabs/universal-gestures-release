@@ -56,6 +56,18 @@
       "name": "UW Reality Labs",
       "email": "unity@example.com",
       "url": "https://uwrealitylabs.com/"
-    }
+    },
+    "samples": [
+      {
+        "displayName": "Sample Models",
+        "description": "Contains sample models to predict common gestures",
+        "path": "Samples~/SampleModels"
+      },
+      {
+        "displayName": "Training Scene",
+        "description": "Contains sample shaders for the Universal render pipeline",
+        "path": "Samples~/TrainingScene"
+      }
+    ]
   }
   
