@@ -7,7 +7,6 @@
     "unityRelease": "24f1",
     "dependencies": {
         "com.meta.xr.sdk.all": "68.0.1",
-        "com.unity.barracuda": "https://github.com/Unity-Technologies/barracuda-release.git",
         "com.unity.collab-proxy": "2.5.1",
         "com.unity.ide.rider": "3.0.28",
         "com.unity.ide.visualstudio": "2.0.22",
