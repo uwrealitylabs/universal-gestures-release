@@ -60,12 +60,12 @@
     "samples": [
       {
         "displayName": "Sample Models",
-        "description": "Contains sample models to predict common gestures",
+        "description": "Contains sample models to detect common gestures",
         "path": "Samples~/SampleModels"
       },
       {
         "displayName": "Training Scene",
-        "description": "Contains sample shaders for the Universal render pipeline",
+        "description": "Contains a training scene to easily train models for your own gestures",
         "path": "Samples~/TrainingScene"
       }
     ]
