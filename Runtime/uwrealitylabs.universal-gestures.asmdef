@@ -4,6 +4,7 @@
     "references": [
         "Unity.TextMeshPro",
         "Unity.Barracuda",
+        "Unity.Barracuda.ONNX",
         "Oculus.VR",
         "Oculus.Interaction"
     ],

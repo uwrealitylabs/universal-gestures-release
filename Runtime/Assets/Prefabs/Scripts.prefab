@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4535130048623157703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2947953474183347044}
+  - component: {fileID: 7348593397533252515}
+  - component: {fileID: 5992241988381368781}
+  - component: {fileID: 3167698332249945863}
+  - component: {fileID: 1127604681052012235}
+  - component: {fileID: 2971140536093095036}
+  m_Layer: 0
+  m_Name: Scripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2947953474183347044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7081317, y: -0.40478805, z: 1.2053401}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7348593397533252515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa520aaeffaa8f34eb6ef8e75de21d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHand: {fileID: 0}
+  rightHandFeature: {fileID: 0}
+  wristTransform: {fileID: 0}
+  transformRecognizerActiveState: {fileID: 0}
+--- !u!114 &5992241988381368781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6157012cef38b4fb232ed0232643d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordingStatusUI: {fileID: 0}
+  recordingFileName: 
+  recordingHandMode: 0
+  recordingDuration: 10
+  recordingStartDelay: 3
+  gestureName: thumbsup
+  writePath: 
+  writePaths: []
+--- !u!114 &3167698332249945863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ee590e644d90547970afaa015c2988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelAsset: {fileID: 5022602860645237092, guid: ced2d1f0e11de496f9e42cb9de50f738,
+    type: 3}
+  handObject: {fileID: 0}
+  inferenceInterval: 0.5
+  inferenceHandMode: 0
+  modelName: 
+--- !u!114 &1127604681052012235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fae1724a98e4a96881bf9b7573e0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 0}
+  leftHandFeature: {fileID: 0}
+  rightHand: {fileID: 0}
+  rightHandFeature: {fileID: 0}
+--- !u!114 &2971140536093095036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535130048623157703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f69523149dbb9f4b9b3dd0f0f3e9c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numHands: 0
+  RightHand: {fileID: 0}
+  LeftHand: {fileID: 0}
+  handGestureRecognized:
+    m_PersistentCalls:
+      m_Calls: []
+  thresholdConfidenceLevel: 0.704
+  loopFunctionWhilePoseIsHeld: 0
