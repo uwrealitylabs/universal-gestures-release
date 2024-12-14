@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum RecordingStatus
-{
-    NotRecording,
-    RecordingNegative,
-    RecordingPositive
-}
-
 public class RecordingStatusUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI labelText;
     [SerializeField] private TextMeshProUGUI targetFileText;
+    [SerializeField] private GameObject dataWriterObject;
+    private UGDataWriterScript dataWriter;
 
-    public RecordingStatus recordingStatus;
-    public string targetFile;
 
+    void Start()
+    {
+        if (dataWriterObject == null)
+        {
+            Debug.LogError("Data writer object not set in RecordingStatusUI script.");
+            gameObject.SetActive(false);
+            return;
+        }
+        dataWriter = dataWriterObject.GetComponent<UGDataWriterScript>();
+    }
 
     void Update()
     {
-        labelText.text = recordingStatus.ToString();
-        targetFileText.text = targetFile;
+        labelText.text = dataWriter.recordingStatus.ToString();
+        targetFileText.text = dataWriter.recordingFileName;
     }
 }

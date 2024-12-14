@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2947953474183347044}
   - component: {fileID: 7348593397533252515}
-  - component: {fileID: 5992241988381368781}
   - component: {fileID: 3167698332249945863}
   - component: {fileID: 1127604681052012235}
   - component: {fileID: 2971140536093095036}
@@ -52,26 +51,6 @@ MonoBehaviour:
   rightHandFeature: {fileID: 0}
   wristTransform: {fileID: 0}
   transformRecognizerActiveState: {fileID: 0}
---- !u!114 &5992241988381368781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4535130048623157703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6157012cef38b4fb232ed0232643d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recordingStatusUI: {fileID: 0}
-  recordingFileName: 
-  recordingHandMode: 0
-  recordingDuration: 10
-  recordingStartDelay: 3
-  gestureName: thumbsup
-  writePath: 
-  writePaths: []
 --- !u!114 &3167698332249945863
 MonoBehaviour:
   m_ObjectHideFlags: 0

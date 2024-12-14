@@ -5,24 +5,29 @@ using UnityEngine;
 
 public class AnalyticsDisplay : MonoBehaviour
 {
-    [SerializeField] private GameObject scripts;
+    [SerializeField] private GameObject inferenceRunnerObject;
+    private UGInferenceRunnerScript inferenceRunner;
     [SerializeField] private TextMeshProUGUI inferenceOutputText;
     [SerializeField] private TextMeshProUGUI thresholdConfidenceText;
     [SerializeField] private TextMeshProUGUI latencyText;
     [SerializeField] private TextMeshProUGUI CPUText;
     [SerializeField] private TextMeshProUGUI RAMUsageText;
 
-    private UniversalGesturesInference inference;
-    private URWLHandPoseDetection confidence;
 
     private void Start()
     {
-        inference = scripts.GetComponent<UniversalGesturesInference>();
-        confidence = scripts.GetComponent<URWLHandPoseDetection>();
+        // Ensure data source is configured correctly
+        if (inferenceRunnerObject == null)
+        {
+            Debug.LogError("Inference runner object not set in AnalyticsDisplay script.");
+            gameObject.SetActive(false);
+            return;
+        }
+        inferenceRunner = inferenceRunnerObject.GetComponent<UGInferenceRunnerScript>();
     }
     private void Update()
     {
-        inferenceOutputText.text = "Inference Output: " + inference.inferenceOutput;
-        thresholdConfidenceText.text = "Threshold Confidence: " + confidence.getThresholdConfidence();
+        inferenceOutputText.text = "Inference Output: " + inferenceRunner.inferenceOutput;
+        thresholdConfidenceText.text = "Threshold Confidence: " + inferenceRunner.thresholdConfidenceLevel;
     }
 }

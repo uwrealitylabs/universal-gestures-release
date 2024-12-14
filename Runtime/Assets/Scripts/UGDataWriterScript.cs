@@ -25,26 +25,53 @@ using TMPro;
 // ]
 
 
-
-public class JsonWriter : MonoBehaviour
+public enum RecordingStatus
 {
-    [SerializeField] private RecordingStatusUI recordingStatusUI;
-    private RecordingStatus desiredRecordingStatus; // Recording status to start recording
-    private float timeToStartRecording = -1; // Time to start recording (used to delay recording start)
-    private float startRecordingTime; // Time when data recording started
-    public string recordingFileName; // Name of file to save data to
-    //public   recordedFiles;
+    NotRecording,
+    RecordingNegative,
+    RecordingPositive
+}
+
+
+
+public class UGDataWriterScript : MonoBehaviour
+{
+    // Public parameters
+    public GameObject dataExtractorObject;
+    public HandMode recordingHandMode;
     // recordingHandMode = OneHand to record data for one hand, TwoHands to record data for two hands
-    public HandMode recordingHandMode = HandMode.TwoHands;
     public float recordingDuration = 10.0f; // Duration of recording in seconds
     public float recordingStartDelay = 3.0f; // Delay before recording starts
     public string gestureName;
+
+    private RecordingStatusUI recordingStatusUI;
+    private UGDataExtractorScript dataExtractor;
+    private RecordingStatus desiredRecordingStatus; // Whether to record positive or negative data
+    private float timeToStartRecording = -1; // Time to start recording (used to delay recording start)
+    private float startRecordingTime; // Time when data recording started
+    [HideInInspector]
+    public RecordingStatus recordingStatus;
+    [HideInInspector]
     public string writePath;
+    [HideInInspector]
     public List<string> writePaths = new();
+    [HideInInspector]
+    public string recordingFileName; // Name of file to save data to
     class GestureData
     {
         public int confidence; // confidence of gesture (label)
         public float[] handData; // float array of hand position data (features)
+    }
+
+    void Start()
+    {
+        if (dataExtractorObject == null)
+        {
+            Debug.LogError("UGDataWriterScript: dataExtractorObject is not set. Please set it in the inspector.");
+            gameObject.SetActive(false);
+            return;
+        }
+        dataExtractor = dataExtractorObject.GetComponent<UGDataExtractorScript>();
     }
 
     // JsonWrite(gestureData) writes gestureData to json file with name "{gestureName}.json" in JsonData directory.  If file doesn't exist, creates it.
@@ -97,26 +124,31 @@ public class JsonWriter : MonoBehaviour
         }
 
         // Record data if recordingStatus is not NotRecording
-        if (recordingStatusUI.recordingStatus != RecordingStatus.NotRecording)
+        if (recordingStatus != RecordingStatus.NotRecording)
         {
             GestureData gestureData = new GestureData();
-
-            // Get hand data source, which depends on recordingHandMode
-            if (recordingHandMode == HandMode.OneHand)
+            // select hand data based on recordingHandMode
+            float[] handData;
+            if (recordingHandMode == HandMode.LeftHand)
             {
-                gestureData.handData = TestingSkeleton.handData;
+                handData = dataExtractor.leftHandData;
             }
-            else if (recordingHandMode == HandMode.TwoHands)
+            else if (recordingHandMode == HandMode.RightHand)
             {
-                gestureData.handData = TestingSkeletonTwoHands.handData;
+                handData = dataExtractor.rightHandData;
             }
+            else
+            {
+                handData = dataExtractor.twoHandsData;
+            }
+            gestureData.handData = handData;
 
             // Set confidence based on recordingStatus (positive or negative data)
-            if (recordingStatusUI.recordingStatus == RecordingStatus.RecordingPositive)
+            if (recordingStatus == RecordingStatus.RecordingPositive)
             {
                 gestureData.confidence = 1;
             }
-            else if (recordingStatusUI.recordingStatus == RecordingStatus.RecordingNegative)
+            else if (recordingStatus == RecordingStatus.RecordingNegative)
             {
                 gestureData.confidence = 0;
             }
@@ -149,22 +181,30 @@ public class JsonWriter : MonoBehaviour
     // Begins recording data
     public void StartRecording()
     {
-        recordingStatusUI.recordingStatus = desiredRecordingStatus;
+        recordingStatus = desiredRecordingStatus;
         recordingFileName = gestureName + "_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".json";
-        recordingStatusUI.targetFile = recordingFileName;
         startRecordingTime = Time.time;
     }
 
     // Stops recording data
     public void StopRecording()
     {
-        recordingStatusUI.recordingStatus = RecordingStatus.NotRecording;
+        recordingStatus = RecordingStatus.NotRecording;
     }
 
-    // Sets recording hand mode to one hand
     public void SetRecordingHandModeOneHand()
     {
-        recordingHandMode = HandMode.OneHand;
+        SetRecordingHandModeRightHand();
+    }
+
+    public void SetRecordingHandModeLeftHand()
+    {
+        recordingHandMode = HandMode.LeftHand;
+    }
+
+    public void SetRecordingHandModeRightHand()
+    {
+        recordingHandMode = HandMode.RightHand;
     }
 
     // Sets recording hand mode to two hands

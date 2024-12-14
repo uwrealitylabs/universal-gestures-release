@@ -11,7 +11,7 @@ public class TestRequest : MonoBehaviour
 {
     [SerializeField] string uri = "http://10.10.48.17:8080";
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] JsonWriter writer;
+    [SerializeField] UGDataWriterScript writer;
     [SerializeField] UniversalGesturesInference inference;
     string apiUrl;
     private void Start()
@@ -25,7 +25,8 @@ public class TestRequest : MonoBehaviour
         if (writer.recordingHandMode == HandMode.TwoHands)
         {
             apiUrl = uri + "train_model_two_hands/";
-        } else
+        }
+        else
         {
             apiUrl = uri + "train_model_one_hand/";
         }
@@ -87,7 +88,8 @@ public class TestRequest : MonoBehaviour
             if (writer.recordingHandMode == HandMode.TwoHands)
             {
                 filePath += "two_hands.onnx";
-            } else
+            }
+            else
             {
                 filePath += "one_hand.onnx";
             }
@@ -104,10 +106,10 @@ public class TestRequest : MonoBehaviour
         {
             Debug.LogError("Error sending data: " + request.error);
         }
-        
+
     }
 
-    
+
     string CombineJsonFiles(string data, string file2)
     {
         // Read the JSON files
