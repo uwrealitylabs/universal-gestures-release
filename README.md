@@ -67,3 +67,18 @@ or reference the steps below.
     You will be able to test your model's performance by making the hand gesture and seeing the model's confidence in the left-most panel.
 12. To save your model, exit the scene and navigate to the universal-gestures-lab repository's `trained_model/` directory.
     Drag the relevant model's `.onnx` file into your Unity project, and attach it to a UGInferenceRunner for use.
+
+# Contact/Contributing
+
+Universal Gestures is a project by Waterloo Reality Labs.
+Visit the
+[Waterloo Reality Labs website](https://uwrealitylabs.com/)
+to get in touch with us and learn more about our other projects.
+
+The source code for the Unity side of this project can be found in our
+[universal-gestures-unity](https://github.com/uwrealitylabs/universal-gestures-unity)
+repository.
+
+The source code for the AI side of this project can be found in our
+[universal-gestures-lab](https://github.com/uwrealitylabs/universal-gestures-lab)
+repository.
