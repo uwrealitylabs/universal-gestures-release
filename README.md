@@ -4,6 +4,9 @@ Seamlessly use AI to detect any hand gesture you can imagine in VR.
 
 # Setup
 
+Watch the [**Getting Started demo**](https://www.youtube.com/watch?v=daMcOk1g8BM&list=PLOsZCVyu97OQ65r99WXG5chM_k2SpovKT)
+or reference the steps below.
+
 1. In your Unity project, open your package manager (click Window > Package Manager).
 2. Click the + button in the top left and select "Add package from git URL".
 3. Install the [Barracuda](https://github.com/Unity-Technologies/barracuda-release) package
