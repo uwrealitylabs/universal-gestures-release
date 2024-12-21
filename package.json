@@ -2,7 +2,7 @@
     "name": "com.uwrealitylabs.universal-gestures",
     "version": "1.0.0",
     "displayName": "Universal Gestures",
-    "description": "Gesture recognition training.",
+    "description": "Seamlessly use AI to detect any hand gesture you can imagine in VR.",
     "unity": "2022.3",
     "unityRelease": "24f1",
     "dependencies": {
