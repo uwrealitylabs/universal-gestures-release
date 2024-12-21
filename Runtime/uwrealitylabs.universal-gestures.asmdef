@@ -1,0 +1,20 @@
+{
+    "name": "uwrealitylabs.universal-gestures",
+    "rootNamespace": "uwrealitylabs.universal-gestures",
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.Barracuda",
+        "Unity.Barracuda.ONNX",
+        "Oculus.VR",
+        "Oculus.Interaction"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
