@@ -110,7 +110,7 @@ public class UGDataWriterScript : MonoBehaviour
         string jsonString = prefix + JsonUtility.ToJson(gestureData) + suffix;
         byte[] insertBytes = Encoding.ASCII.GetBytes(jsonString);
         stream.Write(insertBytes);
-        Debug.Log("Writing to " + gestureName + ".json: '" + jsonString + "'");
+        // Debug.Log("Writing to " + gestureName + ".json: '" + jsonString + "'");
         stream.Close();
     }
 
@@ -200,16 +200,20 @@ public class UGDataWriterScript : MonoBehaviour
     public void SetRecordingHandModeLeftHand()
     {
         recordingHandMode = HandMode.LeftHand;
+        // clear paths
+        writePaths = new();
     }
 
     public void SetRecordingHandModeRightHand()
     {
         recordingHandMode = HandMode.RightHand;
+        writePaths = new();
     }
 
     // Sets recording hand mode to two hands
     public void SetRecordingHandModeTwoHands()
     {
         recordingHandMode = HandMode.TwoHands;
+        writePaths = new();
     }
 }

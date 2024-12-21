@@ -28,7 +28,7 @@ public class RunTrainModelScript : MonoBehaviour
             using (StreamReader reader = process.StandardOutput)
             {
                 string result = reader.ReadToEnd();
-                Debug.Log(result);
+                // Debug.Log(result);
             }
         }
     }

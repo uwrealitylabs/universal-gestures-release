@@ -166,10 +166,12 @@ public class UGInferenceRunnerScript : MonoBehaviour
         {
             inputTensor[i] = handData[i];
         }
+
+        //Debug.Log("Inference Tensor Size " + inputTensor.length);
         worker.Execute(inputTensor);
         outputTensor = worker.PeekOutput();
         inferenceOutput = outputTensor[0];
-        Debug.Log("Inference Output (UGInferenceRunnerScript): " + inferenceOutput);
+        // Debug.Log("Inference Output (UGInferenceRunnerScript): " + inferenceOutput);
     }
 
     void RunFunctionIfPoseDetected()
@@ -196,5 +198,75 @@ public class UGInferenceRunnerScript : MonoBehaviour
                 eventTriggered = false;
             }
         }
+    }
+
+    // load model at runtime
+    public bool LoadModel(string filePath, HandMode newHandMode)
+    {
+        // Start loading the NNModel asset using Addressables
+
+        // Check if file exists
+        if (File.Exists(filePath))
+        {
+            // change paramters
+            inferenceHandMode = newHandMode;
+            // clean up old inference
+            inputTensor.Dispose();
+            outputTensor.Dispose();
+            // Dispose of the existing worker if necessary
+            if (worker != null)
+            {
+                worker.Dispose();
+            }
+
+            // setup new inference
+            var nnModel = LoadNNModel(filePath, "name");
+            var loadedModel = ModelLoader.Load(nnModel);
+
+
+            // Set the loaded model as the runtime model and create a new worker
+            m_RuntimeModel = loadedModel;
+            worker = WorkerFactory.CreateWorker(WorkerFactory.Type.CSharpBurst, m_RuntimeModel);
+
+            // Remake tensor
+            int modelInputSize;
+            if (inferenceHandMode == HandMode.LeftHand || inferenceHandMode == HandMode.RightHand)
+            {
+                modelInputSize = UGDataExtractorScript.ONE_HAND_NUM_FEATURES;
+            }
+            else
+            {
+                modelInputSize = UGDataExtractorScript.TWO_HAND_NUM_FEATURES;
+            }
+
+            inputTensor = new Tensor(1, 0, 0, modelInputSize);
+
+            // Debug.Log("Model loaded successfully from: " + filePath);
+            return true;
+        }
+        else
+        {
+            Debug.LogError("Model file not found at path: " + filePath);
+            return false;
+        }
+
+    }
+    NNModel LoadNNModel(string modelPath, string modelName)
+    {
+        var converter = new ONNXModelConverter(true);
+        Model model = converter.Convert(modelPath);
+        NNModelData modelData = ScriptableObject.CreateInstance<NNModelData>();
+        using (var memoryStream = new MemoryStream())
+        using (var writer = new BinaryWriter(memoryStream))
+        {
+            ModelWriter.Save(writer, model);
+            modelData.Value = memoryStream.ToArray();
+        }
+        modelData.name = "Data";
+        modelData.hideFlags = HideFlags.HideInHierarchy;
+        NNModel result = ScriptableObject.CreateInstance<NNModel>();
+        result.modelData = modelData;
+        result.name = modelName;
+        return result;
     }
 }

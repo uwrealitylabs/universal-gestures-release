@@ -251,7 +251,7 @@ public class UGDataExtractorScript : MonoBehaviour
         float rotationYCos = Mathf.Cos(rotationYDiff);
         float rotationZSin = Mathf.Sin(rotationZDiff);
         float rotationZCos = Mathf.Cos(rotationZDiff);
-        Debug.Log("Rotation X Diff: " + rotationXDiff + ", Rotation Y Diff: " + rotationYDiff + ", Rotation Z Diff: " + rotationZDiff);
+        // Debug.Log("Rotation X Diff: " + rotationXDiff + ", Rotation Y Diff: " + rotationYDiff + ", Rotation Z Diff: " + rotationZDiff);
 
         // Debug.Log("Index finger values: " + rightIndexFingerCurl + ", " + rightIndexFingerAbduction + ", " + rightIndexFingerFlexion + ", " + rightIndexFingerOpposition);
 

@@ -75,7 +75,7 @@ public class UniversalGesturesInference : MonoBehaviour
             worker.Execute(inputTensor);
             outputTensor = worker.PeekOutput();
             inferenceOutput = outputTensor[0];
-            Debug.Log("Inference Output: " + inferenceOutput);
+            // Debug.Log("Inference Output: " + inferenceOutput);
             //inferenceText.text = "Inference Output: " + inferenceOutput; //moved to AnalyticsDisplay
         }
     }
@@ -113,7 +113,7 @@ public class UniversalGesturesInference : MonoBehaviour
             m_RuntimeModel = loadedModel;
             worker = WorkerFactory.CreateWorker(WorkerFactory.Type.CSharpBurst, m_RuntimeModel);
 
-            Debug.Log("Model loaded successfully from: " + filePath);
+            // Debug.Log("Model loaded successfully from: " + filePath);
         }
         else
         {
@@ -194,7 +194,7 @@ public class UniversalGesturesInference : MonoBehaviour
         // Print out inputVector to see if it's correct
         for (int i = 0; i < inputVector.Length; i++)
         {
-            Debug.Log("Input Vector[" + i + "]: " + inputVector[i]);
+            // Debug.Log("Input Vector[" + i + "]: " + inputVector[i]);
         }
         return inputVector;
     }
